@@ -1,0 +1,61 @@
+@import url("normalize.css");
+@import url(http://fonts.googleapis.com/css?family=Cousine);
+
+body {
+	background-color: #f0f0e9;
+	font-family: 'Cousine', sans-serif;
+	color: #555;
+}
+
+a {
+	text-decoration: none;
+	color: #3d6a6f;
+}
+
+h1 {
+	display: block;
+	width: 120px;
+	margin: 0;
+	font-family: "Helvetica";
+	font-weight: 100;
+	font-size: 20px;
+	padding: 10px 0 20px 15px;
+	float: left;
+}
+
+#navigation {
+	background-color: #fff;
+	text-align: right;
+	border-bottom: 1px solid #eee;
+	padding: 15px 20px 10px 10px;	
+}
+
+.done {
+	text-decoration: line-through;
+}
+
+.tag {
+	color: #bab854;
+}
+
+.task-item {
+
+}
+
+input[type="checkbox"]{
+
+}
+
+label {
+    display:inline-block;
+    width:12px;
+    height:12px;
+    padding: 0 2px 6px 2px;
+	vertical-align:middle;
+	cursor:pointer;
+	border-radius: 4px;
+}
+
+label:hover {
+	background-color: #bbb;
+}

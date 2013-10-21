@@ -2,6 +2,6 @@
 
 namespace app\model;
 
-class List {
+class FileDAL {
 	
 }

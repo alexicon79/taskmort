@@ -1,0 +1,16 @@
+
+$appInfo = \Dropbox\AppInfo::loadFromJsonFile("../app-info.json");
+$webAuth = new \Dropbox\WebAuthNoRedirect($appInfo, "Taskmort");
+
+$authorizeUrl = $webAuth->start();
+
+echo "1. Go to: " . $authorizeUrl . "<br />";
+echo "2. Click \"Allow\" (you might have to log in first).<br />";
+echo "3. Copy the authorization code.<br />";
+
+$accessToken = "KB7jXVnaY84AAAAAAAAAAa9BX1yL4feEQLa5cjyCicezxeZEeuQ5AiNRFIsM1rS6";
+
+$dbxClient = new \Dropbox\Client($accessToken, "Taskmort");
+$accountInfo = $dbxClient->getAccountInfo();
+
+print_r($accountInfo);

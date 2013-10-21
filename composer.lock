@@ -3,8 +3,46 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d18b51201461ad35f77a4b0b73cd7a35",
+    "hash": "e096d336e92beab979bae6352146d328",
     "packages": [
+        {
+            "name": "dropbox/dropbox-sdk",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dropbox/dropbox-sdk-php.git",
+                "reference": "dce57e4f5e50a23e497e9e8db647839d404ee0b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dropbox/dropbox-sdk-php/zipball/dce57e4f5e50a23e497e9e8db647839d404ee0b8",
+                "reference": "dce57e4f5e50a23e497e9e8db647839d404ee0b8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">= 5.3"
+            },
+            "require-dev": {
+                "apigen/apigen": "2.8.1",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Dropbox": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Dropbox SDK for PHP",
+            "keywords": [
+                "dropbox"
+            ],
+            "time": "2013-08-22 02:38:03"
+        },
         {
             "name": "raveren/kint",
             "version": "dev-1.0.0-wip",
