@@ -9,6 +9,6 @@ $app = new \app\controller\Application();
 
 $page = $app->invoke();
 
-$htmlWrapper = new \shared\view\HTMLPageView($app->getAppStyleSheet());
+$htmlWrapper = new \shared\view\HTMLPageView($app->getAppStyleSheet(), $app->getAppJavaScript());
 
 echo $htmlWrapper->getHTMLPage($page->title, $page->body);

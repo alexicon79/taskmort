@@ -1,10 +1,52 @@
 @import url("normalize.css");
 @import url(http://fonts.googleapis.com/css?family=Cousine);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Abel);
 
 body {
-	background-color: #f0f0e9;
+/*	background-color: #f0f0e9;
+*/	background-color: #f1f2f2;
+
 	font-family: 'Cousine', sans-serif;
 	color: #555;
+}
+
+#mainWrapper {
+	width: 100%;
+}
+
+#contentWrapper {
+	width: 80%;
+	padding-top: 80px;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+#navigation {
+	background-color: #222;
+	position: fixed;
+	width: 99%;
+	color: #eee;
+	opacity: 0.2;
+	text-align: right;
+	border-bottom: 1px solid #fff;
+	padding: 20px 20px 10px 0;
+	box-shadow: 1px 1px 1px #111;
+}
+
+#navigation a {
+	color: #fff;
+}
+
+#navigation a:hover {
+	color: #428F8E;
+}
+
+div.listMenu {
+	display: block;
+	height: 60px;
+	padding-top: 30px;
+	width: 100%;
 }
 
 a {
@@ -12,22 +54,136 @@ a {
 	color: #3d6a6f;
 }
 
+a:hover {
+	color: #999;
+}
+
+.hidden {
+   position: absolute !important;
+   top: -999px !important;
+   left: -999px !important;
+}
+
+
+/*li.hidden {
+	display: none;
+}*/
+
+li {
+	padding: 0;
+}
+
+
+div.listName {
+	display: block;
+	color: #444;
+	text-align: center;
+	font-size: 14px;
+	padding: 10px;
+	border-radius: 0px 3px 0 0;
+	border-top: 0px solid #bfba69;
+	border-bottom: 1px solid #f0f0e9;
+	background-color: #e2e2e2;
+}
+
+.editableTask, .editableNote, .editableProject {
+	margin: 0;
+	width: 70%;
+	margin-left: 1%;
+	padding: 8px 0 8px 1%;
+	background-color: #fff;
+	color: #5b7f84;
+	border-bottom: 1px solid #eee;
+}
+
+.newItem {
+	padding-top: 33px !important;
+	height: 90px;
+	padding-left: 4% !important;
+	background-color: #e9f1e9;
+	border-radius: 3px;
+}
+
+.newItem .editableTask {
+	margin: 0;
+	width: 92%;
+	margin-left: 1%;
+	padding: 8px 0 8px 1%;
+	background-color: #fff;
+	color: #5b7f84;
+	border-bottom: 1px solid #eee;
+
+}
+
+span#syntax {
+	display: block;
+	color: #8a988a;
+	margin-top: 10px;
+	padding-left: 10px;
+	padding-bottom: 30px;
+	width: 90%;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+div.viewListWrapper {
+	display: block;
+	width: 84%;
+	min-height: 800px;
+	background-color: #fff;
+	padding: 0 8%;
+	margin: 0 auto 100px auto;
+}
+
+
+ul.listBrowser {
+	margin: 0;
+	padding: 30px;
+	font-size: 14px;
+	background-color: #fff;
+}
+
+ul.listBrowser li {
+	list-style: none;
+	margin-top: 10px;
+	border-bottom: 1px dashed #bbb;
+}
+
+
 h1 {
 	display: block;
 	width: 120px;
 	margin: 0;
-	font-family: "Helvetica";
+	font-family: "Abel";
 	font-weight: 100;
-	font-size: 20px;
-	padding: 10px 0 20px 15px;
+	font-size: 22px;
+	padding: 12px 0 20px 15px;
 	float: left;
 }
 
-#navigation {
+
+
+textarea#editableList {
+	width: 84%;
+	min-height: 700px;
+	margin: 0 auto 100px auto;
+	line-height: 2em;
+	resize: none;
+	border: 0px solid #cccccc;
+	padding: 8%;
+	color: #555;
 	background-color: #fff;
-	text-align: right;
-	border-bottom: 1px solid #eee;
-	padding: 15px 20px 10px 10px;	
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+
+textarea#editableList:focus {
+	outline: none;
+}
+
+#newListPrompt {
+	width: 300px;
+	margin: 0 auto;
 }
 
 .done {
@@ -38,13 +194,138 @@ h1 {
 	color: #bab854;
 }
 
-.task-item {
-
+ul.listView {
+	margin: 0;
+	padding: 0;
 }
 
-input[type="checkbox"]{
+ul.listView li {
+	list-style: none;
+	border: 1px solid #eee;
+	border-left: 1px solid #eee;
+	border-top: 0;
+	padding: 0 0;
+	margin: 0;
+} 
 
+ul.listView li.item {
+	padding: 10px 10px;
+	border-radius: 3px;
 }
+
+li.item.task:after, li.item.task_completed:after {
+	content: "\2630";
+	float: right;
+	color: #bbb;
+}
+
+
+li.item.note:after {
+	content: "\2630";
+	float: right;
+	color: #222;
+	font-style: normal;
+}
+
+span.visible {
+	width: 80%;
+	display: inline-block;
+}
+
+span.removeItem, span.removeItem_note {
+	float: right;
+	margin-top: 3px;
+	font-size: 18px;
+	margin-left: 20px;
+	color: #f1d4d9;
+	cursor: pointer;
+}
+
+span.removeItem_note {
+	font-style: normal;
+	color: #bdd4d5;
+}
+span.removeItem:hover {
+	color: #b9282b;
+}
+
+span.checkBox, span.checkBox_completed {
+	float:left;
+	font-size: 30px;
+	margin-left: -36px;
+	margin-top: -11px;
+	color: #eee;
+}
+
+span.checkBox:hover, span.checkBox_completed:hover {
+	color: #92cdcc;
+	cursor: pointer;
+}
+
+ul.listView li.note {
+	color: #555;
+	font-size: 14px !important;
+	margin-left: 1%;
+	width: 92.8%;
+	padding: 8px 1.8% 20px 3.2% !important;
+	font-style: italic;
+	background-color: #dce8e9;
+	border-radius: 0;
+}
+
+ul.listView li.project {
+	font-family: "Abel";
+	text-transform: uppercase;
+	font-size: 34px;
+	background-color: #eee;
+
+/*	color: #e35d58;*/
+	padding-bottom: 2px;
+	color: #b9282b;
+	margin-top: 10px;
+	border-bottom: 4px solid #ddd;
+	border-left: 1px solid #ddd;
+
+	border-right: 0;
+}
+
+li.item.task_completed span.visible {
+	text-decoration: line-through;
+	color: #ccc;
+}
+
+ul.listView li.item.task:hover, ul.listView li.item.task_completed:hover {
+	background-color: #eee;
+	cursor: default;
+}
+
+ul.listView li.item.project {
+	cursor: default;
+}
+
+a#addItem {
+	display: inline-block;
+	background-color: #d8d221;
+	text-align: center;
+	float: right;
+	border-radius: 2px;
+	font-size: 20px;
+	line-height: 30px;
+	height: 30px;
+	width: 40px;
+}
+
+a#addItem:hover {
+	background-color: yellow;
+}
+
+a#edit {
+	float: right;
+	margin-right: 20px;
+	margin-top: 8px;
+	text-decoration: underline;
+}
+
 
 label {
     display:inline-block;

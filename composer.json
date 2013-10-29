@@ -1,6 +1,7 @@
 {
     "require": {
         "raveren/kint": "dev-1.0.0-wip",
-  		"dropbox/dropbox-sdk": "1.1.*"
+  		"dropbox/dropbox-sdk": "1.1.*",
+  		"components/jquery": "dev-master"
     }
 }
