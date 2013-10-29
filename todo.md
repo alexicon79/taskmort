@@ -5,6 +5,7 @@ TODO:
 - ability to add task from VIEW-version
 
 - delete list?
+
 - when creating file, if file name exists, auto-add number.
 - add exception handling
 

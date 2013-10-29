@@ -11,7 +11,6 @@ class ListObject {
 	private $completedTasks = array();
 
 	public function __construct(){
-		
 	}
 
 	public function addAllItems($items) {

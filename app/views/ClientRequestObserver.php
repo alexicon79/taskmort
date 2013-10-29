@@ -8,6 +8,7 @@ class ClientRequestObserver {
 	protected static $NEW = "new";
 	protected static $EDIT = "edit";
 	protected static $VIEW = "view";
+	protected static $DELETE = "delete";
 	protected static $BROWSE = "browse";
 	protected static $CREATE = "create";
 	protected static $LIST_NAME = "name";
@@ -57,6 +58,12 @@ class ClientRequestObserver {
 		} else {
 			return "default.txt";
 		}
+	}
+
+	public function wantsToDeleteList() {
+		if (isset($_GET[self::$LIST]) && $_GET[self::$LIST] == self::$DELETE) {
+			return true;
+		} return false;
 	}
 
 	public function wantsToBrowseLists() {

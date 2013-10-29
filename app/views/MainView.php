@@ -65,6 +65,7 @@ class MainView {
 
 	public function getDefaultPage() {
 		$html = $this->getHeader();
+		$html .= $this->listView->getDefaultPage();
 		return new \shared\view\Page("WELCOME", $html);
 	}
 

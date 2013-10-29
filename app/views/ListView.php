@@ -10,12 +10,6 @@ class ListView extends ClientRequestObserver {
     private static $REGEX_DONE = "/- (.+@done)/i";
 	private static $REGEX_PROJECT = "/^(?!-)(.+:)$/i";
 	private static $REGEX_NOTE = "/^(?!\-).*(?<!\:)$/i";
-	private static $REGEX_NEWNOTE = "/^([a-zåäöA-ZÅÄÖ]+\b)(?!:)$/i";
-	private static $REGEX_NEW_PROJECT = "/^(?!-)(.+:)$/i";
-
-	private static $REGEX_task = "/^(- ([^\@\n]+).+)/i";
-	private static $REGEX_project = "/^(?!-)(.+:)$/i";
-	private static $REGEX_note = "/^(?!\-).*(?<!\:)$/i";
 
 	public function getNewListPrompt() {
 		
@@ -40,7 +34,8 @@ class ListView extends ClientRequestObserver {
 			if ($listName == "." || $listName == ".."){
 				$html .= "";
 			} else {
-				$html .= "<li><a href='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "'>". $listName . "</a></li>";
+				$html .= "<li><a href='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "'>". $listName . "</a>";
+				$html .= "<a href='?" . parent::$LIST . "=" . parent::$DELETE . "&name=" . $listName ."' class='deleteList'>X</a></li>";
 			}
 		}
 		
@@ -56,7 +51,7 @@ class ListView extends ClientRequestObserver {
 		<div class='listName'>$listName</div>
 		<div class='viewListWrapper'>
 		<div class='listMenu'>
-			<a id='addItem' href=''>???</a>
+			<a id='addItem' href=''>+</a>
 			<a id='edit' href='?" . parent::$LIST ."=" . parent::$EDIT . "&name=" . $listName . "'>EDIT</a>
 		</div>
 		<form action='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "' method='post' enctype='multipart/form-data'>
@@ -87,7 +82,6 @@ class ListView extends ClientRequestObserver {
 		return $html;
 	}
 
-
 	public function getEditableList($listName, $listContents) {
 
 		if (empty($listContents)) {
@@ -106,6 +100,12 @@ class ListView extends ClientRequestObserver {
 			</form>
 		</div>";
 
+		return $html;
+	}
+
+	public function getDefaultPage() {
+		$html = "
+		<div id='taskmortLogo'>&nbsp;</div>";
 		return $html;
 	}
 

@@ -28,12 +28,9 @@ class Application {
 																 	$this->listView, 
 																 	$this->clientRequestObserver,
 																 	$this->mainView);
-
 	}
 
 	public function invoke() {
-
-		session_start();
 
 		$page = $this->listController->handleLists();
 

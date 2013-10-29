@@ -1,9 +1,9 @@
 $(document).ready(function () {
 	
 	var items = $(".item");
-
 	var visibleItems = $(".visible");
 	var completedTasks = $(".task_completed");
+	var deleteList = $(".deleteList");
 	var itemInputFields = $(":input:not(textarea)");
 	var addItem = $("#addItem");
 	var removeItem = $(".removeItem");
@@ -12,6 +12,9 @@ $(document).ready(function () {
 	var REGEX_Done = /@done/;
 	// var REGEX_Project = /^(?!-)(.+\:)$/i;
 	// var REGEX_Note = /^(?!-)(.+)(?!\:)$/i;
+	// 
+	
+	console.log(deleteList);
 
 	generateMarkupFromClassName(items);
 
@@ -80,6 +83,14 @@ $(document).ready(function () {
 		var item = $(e.target)[0].parentNode;
 		item.remove();
 		submit.click();
+	});
+
+	deleteList.click(function(e){
+		if (confirm('Do you really want to delete this list?')) {
+    		return;
+		} else {
+    		e.preventDefault();
+		}
 	});
 
 	checkBox.click(function(e){

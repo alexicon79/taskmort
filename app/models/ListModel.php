@@ -102,6 +102,11 @@ class ListModel {
 		self::writeToFile($saveFileHandle, $listContent);
 	}
 
+	public function deleteList($listName) {
+		unlink(self::$INCLUDE_PATH . $listName);
+		header('Location: ?list=browse');
+	}
+
 	public function getNewListName() {
 		return $this->newFileName;
 	}

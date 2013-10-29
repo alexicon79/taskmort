@@ -46,6 +46,10 @@ class ListController {
 		elseif ($this->clientRequest->wantsToBrowseLists()) {
 			return $this->showLists();
 		}
+		elseif ($this->clientRequest->wantsToDeleteList()) {
+			$listName = $this->clientRequest->getSelectedListName();
+			return $this->deleteList($listName);
+		}
 		else {
 			return $this->mainView->getDefaultPage();
 		}
@@ -83,6 +87,11 @@ class ListController {
 		return $this->viewList($listName);
 	}
 
+	public function deleteList($listName) {
+		$this->listModel->deleteList($listName);
+		return $this->showLists();
+	}
+
 	public function editList($listName) {
 		try {
 			$listContent = $this->listModel->getFileContent($listName);
@@ -95,6 +104,9 @@ class ListController {
 	public function viewList($listName) {
 		try {
 			$listItems = $this->listModel->getMarkedUpFileContent($listName);
+			if (empty($listItems)){
+				$listItems = new \app\model\ListObject();
+			}
 			return $this->mainView->getViewListPage($listName, $listItems);
 		} catch (\Exception $e) {
 			return $this->mainView->getDefaultPage();
