@@ -2,19 +2,12 @@
 
 namespace app\model;
 
-require_once("../app/models/ListObject.php");
-
-class ListModel {
+class ListDAL {
 
 	private $newFileName;
-	private $listObject;
 	private static $DEFAULT_FILE = "default.txt";
 	private static $FILE_TYPE = ".txt";
 	private static $INCLUDE_PATH = "../data/";
-
-	public function __construct() {
-		$this->listObject = new \app\model\ListObject();
-	}
 
 	public function getFileContent($selectedListName) {
 
@@ -28,67 +21,6 @@ class ListModel {
 		}
 	}
 
-	public function getMarkedUpFileContent($selectedListName) {
-		$rawFileContent = $this->getFileContent($selectedListName);
-
-		$items = explode("\n", $rawFileContent);
-		$items = array_filter($items);
-
-		$this->listObject->addAllItems($items);
-
-		$markedUpObjects = array();
-
-		foreach ($items as $string) {
-			$markedUpObjects = $this->extractListObjectType($string);
-		}
-
-		return $markedUpObjects;
-	}
-
-	public function extractListObjectType($string) {
-
-		$string = ltrim($string);
-		$string = rtrim($string);
-
-		$taskPattern = "/^(- ([^\@\n]+).+)/i";
-		$donePattern = "/- (.+@done)/i";
-		$projectPattern = "/^(?!-)(.+:)$/i";
-		$notePattern = "/^(?!\-).*(?<!\:)$/i";
-
-		if (preg_match($taskPattern, $string)) {
-			// $string = $string . " [TASK]";
-			$this->listObject->addTask($string);
-		}
-		
-		if (preg_match($donePattern, $string)) {
-			// $string = $string . " [DONE]";
-			$this->listObject->addCompletedTask($string);
-		}
-		
-		if (preg_match($notePattern, $string)) {
-			// $string = $string . " [NOTE]";
-			$this->listObject->addNote($string);
-		}
-
-		if (preg_match($projectPattern, $string)) {
-			// $string = $string . " [PROJECT]";
-			$this->listObject->addProject($string);
-		}
-
-		return $this->listObject;
-	}
-
-	public function convertToPlainText($contentArray) {
-
-		$text = "";
-
-		foreach ($contentArray as $string) {
-			$string = strip_tags($string);
-			$text .= $string . "\n";
-		}
-		return $text;
-	} 
-
 	public function createListFile($listName) {
 		$cleanListName = self::cleanUpListName($listName);
 		$this->newFileName = $cleanListName . self::$FILE_TYPE;
@@ -97,9 +29,22 @@ class ListModel {
 		return $newFileHandle;
 	}
 
+	/**
+ 	 * @param $listName String
+	 * @param $listContent String
+	 */
+	
 	public function saveList($listName, $listContent) {
 		$saveFileHandle = fopen(self::$INCLUDE_PATH . $listName, 'w') or die ("can't save file");
 		self::writeToFile($saveFileHandle, $listContent);
+	}
+
+	public function writeToFile($fileHandle, $fileContents) {
+		if (empty($fileContents)) {
+			$fileContents = "Default:\n- Add some tasks...";
+		}
+		fwrite($fileHandle, $fileContents);
+		fclose($fileHandle);
 	}
 
 	public function deleteList($listName) {
@@ -122,11 +67,6 @@ class ListModel {
 		} return false;
 	}
 
-	public function writeToFile($fileHandle, $fileContents) {
-		fwrite($fileHandle, $fileContents);
-		fclose($fileHandle);
-	}
-
 	public function getAllLists() {
 		$directory = self::$INCLUDE_PATH;
 		$listArray = scandir($directory);
@@ -136,6 +76,18 @@ class ListModel {
 	
 	public function getFileDirectoryPath() {
 		return self::$INCLUDE_PATH;
+	}
+
+
+	public function convertToPlainText($contentArray) {
+
+		$text = "";
+
+		foreach ($contentArray as $string) {
+			$string = strip_tags($string);
+			$text .= $string . "\n";
+		}
+		return $text;
 	}
 
 	/**

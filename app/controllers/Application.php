@@ -5,29 +5,32 @@ namespace app\controller;
 require_once("../app/views/MainView.php");
 require_once("../app/views/ClientRequestObserver.php");
 require_once("../app/views/ListView.php");
-require_once("../app/models/ListModel.php");
+require_once("../app/models/ListDAL.php");
 require_once("../app/controllers/ListController.php");
+require_once("../app/models/TaskList.php");
+
 
 class Application {
 
 	private $mainView;
 	private $clientRequestObserver;
-	private $listModel;
+	private $listDAL;
 	private $listController;
 	private $listView;
+	private $taskList;
 
 	public function __construct() {
-		/* baka ihop applikationen */
 		$this->mainView = new \app\view\MainView();
 		$this->clientRequestObserver = new \app\view\ClientRequestObserver();
-
-		$this->listModel = new \app\model\ListModel();
+		$this->listDAL = new \app\model\ListDAL();
 		$this->listView = new \app\view\ListView();
+		$this->taskList = new \app\model\TaskList();
 
-		$this->listController = new \app\controller\ListController( $this->listModel, 
+		$this->listController = new \app\controller\ListController( $this->listDAL, 
 																 	$this->listView, 
 																 	$this->clientRequestObserver,
-																 	$this->mainView);
+																 	$this->mainView,
+																 	$this->taskList);
 	}
 
 	public function invoke() {

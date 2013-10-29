@@ -234,14 +234,19 @@ li.item.task:after, li.item.task_completed:after {
 	color: #bbb;
 }
 
-
-li.item.note:after {
-	content: "\2630";
-	float: right;
-	color: #222;
-	font-style: normal;
+li.item.task:nth-of-type(1){
+	border-top: 1px solid #eee;
 }
 
+
+/*li.item.note:after {
+	content: "\2630";
+	float: right;
+	color: #fff;
+	font-size: 16px;
+	font-style: normal;
+}
+*/
 span.visible {
 	width: 80%;
 	display: inline-block;
@@ -263,6 +268,9 @@ span.removeItem_note {
 span.removeItem:hover {
 	color: #b9282b;
 }
+span.removeItem_note:hover {
+	color: #b9282b;
+}
 
 span.checkBox, span.checkBox_completed {
 	float:left;
@@ -278,12 +286,12 @@ span.checkBox:hover, span.checkBox_completed:hover {
 }
 
 ul.listView li.note {
-	color: #555;
-	font-size: 14px !important;
-	margin-left: 1%;
-	width: 92.8%;
-	padding: 8px 1.8% 20px 3.2% !important;
-	font-style: italic;
+	color: #888;
+	font-size: 13px !important;
+	margin-left: 0.6%;
+	width: 93.8%;
+	padding: 13px 1.8% 20px 3.2% !important;
+	font-style: normal;
 	background-color: #dce8e9;
 	border-radius: 0;
 }

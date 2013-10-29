@@ -1,14 +1,15 @@
 Project:
-note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%;
+- this is new
 Project:
 Test:
-- task 
-- new task
 - task
-Har inte fått tag på Arne och den
+note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%;
+- task
+- new task @done
 - test
 - test403203984
 this is anote
+Har inte fått tag på Arne och den andra
 - test5
 - ballong
 Project:

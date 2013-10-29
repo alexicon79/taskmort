@@ -4,7 +4,7 @@ $(document).ready(function () {
 	var visibleItems = $(".visible");
 	var completedTasks = $(".task_completed");
 	var deleteList = $(".deleteList");
-	var itemInputFields = $(":input:not(textarea)");
+	var itemInputFields = $(":input:not(textarea, #listName)");
 	var addItem = $("#addItem");
 	var removeItem = $(".removeItem");
 	var removeNote = $(".removeItem_note");

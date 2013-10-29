@@ -4,8 +4,6 @@ namespace app\view;
 
 require_once("../app/views/Navigation.php");
 require_once("../app/views/ListView.php");
-require_once("../app/models/ListModel.php");
-
 
 class MainView {
 
