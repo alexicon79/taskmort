@@ -2,19 +2,16 @@ $(document).ready(function () {
 	
 	var items = $(".item");
 	var visibleItems = $(".visible");
+	var editButton = $("#edit");
+	var viewButton = $("#view");
 	var completedTasks = $(".task_completed");
 	var deleteList = $(".deleteList");
-	var itemInputFields = $(":input:not(textarea, #listName)");
+	var itemInputFields = $(":input:not(textarea, #listName, .loginForm, .loginCheckbox, .loginSubmit, #saveAndView)");
 	var addItem = $("#addItem");
 	var removeItem = $(".removeItem");
 	var removeNote = $(".removeItem_note");
 	var checkBox;
 	var REGEX_Done = /@done/;
-	// var REGEX_Project = /^(?!-)(.+\:)$/i;
-	// var REGEX_Note = /^(?!-)(.+)(?!\:)$/i;
-	// 
-	
-	console.log(deleteList);
 
 	generateMarkupFromClassName(items);
 
@@ -34,7 +31,7 @@ $(document).ready(function () {
 	itemInputFields.blur(function(e){
 		var itemInput = $(e.target);
 		var item = itemInput[0].previousSibling;
-		var originalInputString = itemInput.val()
+		var originalInputString = itemInput.val();
 		var cleanString = originalInputString.replace(/<[^>]+>[^<]*<[^>]+>|<[^\/]+\/>/ig, "");
 
 		itemInput[0].className = "hidden";
@@ -111,6 +108,11 @@ $(document).ready(function () {
 		var cleanString = originalString.replace(/@done/ig, "");
 
 		itemInput.value = cleanString;
+		submit.click();
+	});
+
+	editButton.click(function(e){
+		var submit = $(":submit");
 		submit.click();
 	});
 

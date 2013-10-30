@@ -79,7 +79,7 @@ class ListController {
 		if ($this->clientRequest->wantsToSavePlainText()) {
 			$content = $this->clientRequest->getSubmittedContent();
 			$this->listDAL->saveList($listName, $content);
-			return $this->editList($listName);
+			return $this->viewList($listName);
 
 		} elseif ($this->clientRequest->wantsToSaveList()) {
 			$submittedContent = $this->clientRequest->getSubmittedContent();

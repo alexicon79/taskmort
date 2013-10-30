@@ -16,7 +16,7 @@ class ClientRequestObserver {
 	protected static $NEW_LIST_NAME = "newListName";
 	protected static $CREATE_LIST = "createList";
 	protected static $SAVE_LIST = "saveList";
-	protected static $SAVE_RAW = "saveRawContent";
+	protected static $SAVE_TEXT = "savePlainText";
 
 	
 	public function wantsToCreateNewList() {
@@ -47,7 +47,7 @@ class ClientRequestObserver {
 	}
 
 	public function wantsToSavePlainText() {
-		if (isset($_POST[self::$SAVE_RAW])) {
+		if (isset($_POST[self::$SAVE_TEXT])) {
 			return true;
 		} return false;
 	}

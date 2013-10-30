@@ -32,7 +32,7 @@ class MainView {
 	}
 	
 	public function getHeader() {
-		$html = "<h1>TASKMORT</h1>";
+		$html = "<h1>TASKMÔRT</h1>";
 		$html .= $this->navigation->getMenu();
 		return $html;
 	}

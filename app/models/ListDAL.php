@@ -23,7 +23,16 @@ class ListDAL {
 
 	public function createListFile($listName) {
 		$cleanListName = self::cleanUpListName($listName);
+
 		$this->newFileName = $cleanListName . self::$FILE_TYPE;
+
+		$appendIndex = 0;
+
+		// if filename exists append number to filename
+		while ($this->checkIfFileExists($this->newFileName)) {
+			$appendIndex++;
+			$this->newFileName = $cleanListName . "-" . $appendIndex . self::$FILE_TYPE;
+		}
 		
 		$newFileHandle = fopen(self::$INCLUDE_PATH . $this->newFileName, 'w') or die("can't create file");
 		return $newFileHandle;

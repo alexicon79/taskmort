@@ -10,7 +10,8 @@ class Navigation extends ClientRequestObserver {
 		$menu = "
 		<div id='navigation'>
 			<a href='?" . parent::$LIST . "=" . parent::$NEW . "'>New</a> | 
-			<a href='?" . parent::$LIST . "=" . parent::$BROWSE . "'>My Lists</a>
+			<a href='?" . parent::$LIST . "=" . parent::$BROWSE . "'>My Lists</a> | 
+			<a href='?" . \app\login\view\LoginObserver::$LOGOUT . "' id='signOut'>Sign Out</a>
 		</div>";
 
 		return $menu;

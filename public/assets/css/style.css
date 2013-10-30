@@ -4,9 +4,7 @@
 @import url(http://fonts.googleapis.com/css?family=Abel);
 
 body {
-/*	background-color: #f0f0e9;
-*/	background-color: #f1f2f2;
-
+	background-color: #f1f2f2;
 	font-family: 'Cousine', sans-serif;
 	color: #555;
 }
@@ -70,15 +68,13 @@ a:hover {
 }
 
 .hidden {
-   position: absolute !important;
-   top: -999px !important;
-   left: -999px !important;
+	position: absolute !important;
+	top: -999px !important;
+	left: -999px !important;
 }
 
 
-/*li.hidden {
-	display: none;
-}*/
+
 
 li {
 	padding: 0;
@@ -111,7 +107,8 @@ div.listName {
 	padding-top: 33px !important;
 	height: 90px;
 	padding-left: 4% !important;
-	background-color: #e9f1e9;
+	margin-bottom: 10px !important;
+	background-color: #fdffd1;
 	border-radius: 3px;
 }
 
@@ -132,7 +129,7 @@ div.listName {
 
 span#syntax {
 	display: block;
-	color: #8a988a;
+	color: #cac253;
 	margin-top: 10px;
 	padding-left: 10px;
 	padding-bottom: 30px;
@@ -141,7 +138,7 @@ span#syntax {
 	cursor: pointer;
 }
 
-div.viewListWrapper {
+div.viewListWrapper, div.editListWrapper {
 	display: block;
 	width: 84%;
 	min-height: 800px;
@@ -152,8 +149,8 @@ div.viewListWrapper {
 
 
 ul.listBrowser {
-	margin: 0;
-	padding: 30px;
+	margin: 35px 0;
+	padding: 30px 30px 60px 30px;
 	font-size: 14px;
 	background-color: #fff;
 }
@@ -185,7 +182,7 @@ textarea#editableList {
 	line-height: 2em;
 	resize: none;
 	border: 0px solid #cccccc;
-	padding: 8%;
+	padding: 10px 2%;
 	color: #555;
 	background-color: #fff;
 	background-position: bottom right;
@@ -197,9 +194,31 @@ textarea#editableList:focus {
 }
 
 #newListPrompt {
-	width: 300px;
+	display: block;
+	margin-top: 180px !important;
+	width: 292px;
+	height: 300px;
 	margin: 0 auto;
+	text-align: center;
 }
+
+#newListPrompt input#listName {
+	width: 247px;
+	height: 24px;
+	padding: 10px;
+}
+
+#newListPrompt input[type="submit"] {
+	margin: 20px 0;
+	box-shadow: 0 1px #bbb;
+	width: 272px;
+	background-color: #b8c5c6;
+	border: 0;
+	padding: 15px 0;
+	font-size: 18px;
+	border-radius: 2px;
+}
+
 
 .done {
 	text-decoration: line-through;
@@ -302,10 +321,10 @@ ul.listView li.project {
 	font-size: 34px;
 	background-color: #eee;
 
-/*	color: #e35d58;*/
+	/*	color: #e35d58;*/
 	padding-bottom: 2px;
 	color: #b9282b;
-	margin-top: 10px;
+	margin-top: 0px;
 	border-bottom: 4px solid #ddd;
 	border-left: 1px solid #ddd;
 
@@ -331,30 +350,140 @@ a#addItem {
 	background-color: #d8d221;
 	text-align: center;
 	float: right;
+	color: #222;
+	margin-right: 103px;
 	border-radius: 2px;
-	font-size: 20px;
-	line-height: 30px;
+	font-size: 28px;
+	font-weight: bold;
+	line-height: 33px;
 	height: 30px;
-	width: 40px;
+	width: 83px;
 }
 
 a#addItem:hover {
-	background-color: yellow;
+	background-color: #898514;
 }
 
 a#edit {
+	display: inline-block;
 	float: right;
-	margin-right: 20px;
-	margin-top: 8px;
-	text-decoration: underline;
+	border-radius: 2px;
+	margin-right: 10px;
+	font-size: 10px;
+	line-height: 30px;
+	height: 30px;
+	width: 40px;
+	background-size: 60%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+a#edit {
+	background-color: #b3ced0;
+	background-image: url("../img/058.png");
+	margin-right: 0px;
+}
+
+a#edit:hover {
+	background-color: #619a9d;	
+}
+
+a.browseFile {
+	padding-left: 30px;
+}
+
+a.deleteList {
+	padding-right: 4px;
+	line-height: 30px;
+	font-size: 18px;
+}
+
+a.browseFile:before {
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 18px;
+	margin-left: -23px;
+	margin-right: 7px;
+	margin-top: 0px;
+	background-image: url("../img/043.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	color: white;
+}
+
+a#signOut:before {
+	content: "";
+	display: inline-block;
+	width: 14px;
+	height: 12px;
+	background-image: url("../img/014_02.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-right: 6px;
+	margin-left: -2px;
+}
+a#signOut {
+	margin-right: 10px;
+}
+
+#saveAndView {
+	position: static !important;
+	margin: -60px 50px 0 0px;
+	width: 40px;
+	border: 0;
+	padding: 5px 0;
+	border-radius: 2px;
+	float: right;
+	background-color: #b3ced0;
+	background-image: url("../img/008.png");
+	margin-right: 0px;
+	background-size: 70%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#saveAndView:hover {
+	background-color: #619a9d;
+}
+
+#listSaveButton, #viewSaveButton {
+	position: static !important;
+	margin: -60px 50px 0 0px;
+	box-shadow: 0 1px #bbb;
+	width: 82px;
+	background-color: #9ac0b0;
+	border: 0;
+	padding: 5px 0;
+	border-radius: 2px;
+	float: right;
+	height: 29px;
+	background-image: url("../img/019.png");
+	background-size: 32%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#viewSaveButton {
+	margin: -60px 50px 0 0px;
+}
+
+#listSaveButton:hover, #viewSaveButton:hover {
+	background-color: #5e967e;
+}
+
+#listSaveButton:active, #viewSaveButton:active {
+	padding: 2px 0;
 }
 
 
+
 label {
-    display:inline-block;
-    width:12px;
-    height:12px;
-    padding: 0 2px 6px 2px;
+	display:inline-block;
+	width:12px;
+	height:12px;
+	padding: 0 2px 6px 2px;
 	vertical-align:middle;
 	cursor:pointer;
 	border-radius: 4px;
@@ -362,4 +491,79 @@ label {
 
 label:hover {
 	background-color: #bbb;
+}
+
+
+/** LOGIN STYLE **/
+
+
+h1.login {
+	color: #143032;
+	font-size: 28px;
+	padding: 44px 0 31px 0;
+	display: block;
+	width: 100%;
+}
+
+#formWrapper{
+	background-image: url("../img/logo.png");
+	background-size: 40%;
+	background-position: 193px 30px;
+	background-repeat: no-repeat;
+	display: block;
+	width: 280px;
+	background-color: #ddd;
+	margin: 150px auto;
+	padding: 0px 40px 20px 40px;
+	border-radius: 4px;
+}
+
+span#loginDisclaimer {
+	font-size: 11px;
+	line-height: 15px;
+	display: block;
+	height: 78px;
+	color: #999;
+	margin-top: 10px;
+}
+
+label.login:hover {
+	background-color: #ddd;
+}
+
+#submit {
+	margin: 20px 0;
+	box-shadow: 0 1px #bbb;
+	width: 272px;
+	background-color: #b8c5c6;
+	border: 0;
+	padding: 20px 0;
+	font-size: 18px;
+	border-radius: 2px;
+}
+
+#submit:hover {
+	background-color: #bdc9ca;
+}
+
+input.loginForm {
+	display: block;
+	padding: 14px;
+	width: 240px;
+	margin-bottom: 20px;
+}
+
+#checkbox input{
+	display: inline;
+	width: 16px;
+	float: left;
+}
+
+#checkbox {
+	font-size: 12px;
+}
+
+#errorMsg{
+	font-size: 12px;
+	color: #b75264;
 }

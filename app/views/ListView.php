@@ -17,8 +17,8 @@ class ListView extends ClientRequestObserver {
 		<div id='contentWrapper'>
 			<div id='newListPrompt'>
 				<form action='?" . parent::$LIST . "=" . parent::$CREATE . "' method='post' enctype='multipart/form-data'>
-					<input type='text' size='20' name='" . parent::$NEW_LIST_NAME . "' id='listName' value='' />
-					<input type='submit' name='" . parent::$CREATE_LIST . "'  value='Save' />
+					<input type='text' size='20' name='" . parent::$NEW_LIST_NAME . "' id='listName' placeholder='New List...' value='' />
+					<input type='submit' name='" . parent::$CREATE_LIST . "'  value='Create List' />
 				</form>
 			</div>
 		</div>";
@@ -34,8 +34,8 @@ class ListView extends ClientRequestObserver {
 			if ($listName == "." || $listName == ".."){
 				$html .= "";
 			} else {
-				$html .= "<li><a href='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "'>". $listName . "</a>";
-				$html .= "<a href='?" . parent::$LIST . "=" . parent::$DELETE . "&name=" . $listName ."' class='deleteList'>X</a></li>";
+				$html .= "<li><a href='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "' class='browseFile'>". $listName . "</a>";
+				$html .= "<a href='?" . parent::$LIST . "=" . parent::$DELETE . "&name=" . $listName ."' class='deleteList'>&times;</a></li>";
 			}
 		}
 		
@@ -51,10 +51,11 @@ class ListView extends ClientRequestObserver {
 		<div class='listName'>$listName</div>
 		<div class='viewListWrapper'>
 		<div class='listMenu'>
-			<a id='addItem' href=''>+</a>
-			<a id='edit' href='?" . parent::$LIST ."=" . parent::$EDIT . "&name=" . $listName . "'>EDIT</a>
+			<a id='edit' href='?" . parent::$LIST ."=" . parent::$EDIT . "&name=" . $listName . "' title='EDIT PLAIN TEXT'></a>
+			<a id='addItem' href='' title='ADD ITEM'>+</a>
 		</div>
 		<form action='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "' method='post' enctype='multipart/form-data'>
+		<input id='viewSaveButton' type='submit' name='" . parent::$SAVE_LIST . "' value='' />
 		<ul class='listView'>";
 		
 		foreach ($listItems->getAllItems() as $item) {
@@ -76,7 +77,6 @@ class ListView extends ClientRequestObserver {
 
 		}
 		$html .= "</ul>
-					<input type='submit' name='" . parent::$SAVE_LIST . "' value='spara' />
 					</form>
 					</div></div>";
 		return $html;
@@ -90,14 +90,17 @@ class ListView extends ClientRequestObserver {
 
 		$html = "
 		<div id='contentWrapper'>
-		<div class='listName'>$listName
-			<a id='view' href='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "'>VIEW</a>
-		</div>
-			<form action='?" . parent::$LIST . "=" . parent::$EDIT . "&name=" . $listName . "' method='post' enctype='multipart/form-data'>
+		<div class='listName'>$listName</div>
+		<div class='editListWrapper'>
+			<div class='listMenu'>
+				<a id='view' href='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "' title='VIEW'></a>
+			</div>
+			<form action='?" . parent::$LIST . "=" . parent::$VIEW . "&name=" . $listName . "' method='post' enctype='multipart/form-data'>
+				<input type='submit' id='saveAndView' name='" . parent::$SAVE_TEXT . "' value='' />
 				<textarea id='editableList' name='plainText' 
 				placeholder='Add some tasks...'>" . $listContents . "</textarea>
-				<input type='submit' id='listSaveButton' name='" . parent::$SAVE_RAW . "' value='Save' />
 			</form>
+			</div>
 		</div>";
 
 		return $html;
