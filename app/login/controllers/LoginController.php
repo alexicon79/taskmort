@@ -2,6 +2,13 @@
 
 namespace app\login\controller;
 
+/**
+ * Handles interaction with login form
+ * @author Alexander Hall 
+ * @link http://www.alxhall.se
+ * @link https://github.com/alexicon79/taskmort/
+ * @license http://opensource.org/licenses/MIT MIT License
+ */
 class LoginController {
 
 	/**
@@ -53,8 +60,8 @@ class LoginController {
 	/**
 	 * Checks if user is logged in or not and returns appropriate HTML
 	 * 
-	 * @return string $loginFormHTML , HTML with login-form, if user is logged out
-	 * @return string $protectedPageHTML , HTML with protected page, if user is logged in
+	 * @return string $loginFormHTML HTML with login-form, if user is logged out
+	 * @return string $protectedPageHTML HTML with protected page, if user is logged in
 	 */
 	public function doLoginAttempt() {
 
@@ -130,7 +137,7 @@ class LoginController {
 
 	/**
 	 * Logs out user, clears cookies/session and returns HTML with login form
-	 * @param  string $logOutMessage , Confirmation message
+	 * @param  string $logOutMessage Confirmation message
 	 * @return string HTML
 	 */
 	private function handleLogOut($logOutMessage) {
@@ -142,7 +149,7 @@ class LoginController {
 
 	/**
 	 * Shows protected page when logged in
-	 * @param  string $message , confirmation message
+	 * @param  string $message Confirmation message
 	 * @return string HTML
 	 */
 	private function showProtectedPage($message) {

@@ -2,6 +2,15 @@
 
 namespace app\login\model;
 
+// @TODO: Implement more sophisticated solution
+
+/**
+ * Temporary account
+ * @author Alexander Hall 
+ * @link http://www.alxhall.se
+ * @link https://github.com/alexicon79/taskmort/
+ * @license http://opensource.org/licenses/MIT MIT License
+ */
 class TempAccount {
 
 	/**

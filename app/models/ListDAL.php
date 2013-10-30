@@ -2,13 +2,41 @@
 
 namespace app\model;
 
+/**
+ * Handles rules for lists and files
+ * @author Alexander Hall 
+ * @link http://www.alxhall.se
+ * @link https://github.com/alexicon79/taskmort/
+ * @license http://opensource.org/licenses/MIT MIT License
+ */
 class ListDAL {
-
+	
+	/**
+	 * @var string Name of newly created file
+	 */
 	private $newFileName;
+
+	/**
+	 * @var string Default file name
+	 */
 	private static $DEFAULT_FILE = "default.txt";
+
+	/**
+	 * @var string Valid file extension
+	 */
 	private static $FILE_TYPE = ".txt";
+
+	/**
+	 * @var string Path to directory containing lists
+	 */
 	private static $INCLUDE_PATH = "../data/";
 
+	/**
+	 * Gets file content as plain text
+	 * @param  string $selectedListName Name of selected list
+	 * @throws exception If file not found
+	 * @return string
+	 */
 	public function getFileContent($selectedListName) {
 
 		set_include_path(self::$INCLUDE_PATH);
@@ -21,6 +49,11 @@ class ListDAL {
 		}
 	}
 
+	/**
+	 * Creates valid list file
+	 * @param  string $listName Name of list to create
+	 * @return [file pointer resource] $newFileHandle
+	 */
 	public function createListFile($listName) {
 		$cleanListName = self::cleanUpListName($listName);
 
@@ -39,15 +72,22 @@ class ListDAL {
 	}
 
 	/**
- 	 * @param $listName String
-	 * @param $listContent String
+	 * Saves list
+ 	 * @param string $listName Name of list to save
+	 * @param string $listContent Content as plain text
+	 * @return null
 	 */
-	
 	public function saveList($listName, $listContent) {
 		$saveFileHandle = fopen(self::$INCLUDE_PATH . $listName, 'w') or die ("can't save file");
 		self::writeToFile($saveFileHandle, $listContent);
 	}
 
+	/**
+	 * Writes content to file, adds default content if empty
+	 * @param  [file pointer resource] $fileHandle
+	 * @param  string $fileContents Content to write to file
+	 * @return null
+	 */
 	public function writeToFile($fileHandle, $fileContents) {
 		if (empty($fileContents)) {
 			$fileContents = "Default:\n- Add some tasks...";
@@ -56,15 +96,28 @@ class ListDAL {
 		fclose($fileHandle);
 	}
 
+	/**
+	 * Deletes list
+	 * @param  string $listName Name of list to delete
+	 * @return null
+	 */
 	public function deleteList($listName) {
 		unlink(self::$INCLUDE_PATH . $listName);
 		header('Location: ?list=browse');
 	}
-
+	
+	/**
+	 * @return string Newly created list name
+	 */
 	public function getNewListName() {
 		return $this->newFileName;
 	}
 
+	/**
+	 * Checks if file name already exists
+	 * @param  string $selectedListName Name to check
+	 * @return bool
+	 */
 	public function checkIfFileExists($selectedListName) {
 		
 		$allLists = $this->getAllLists();
@@ -76,6 +129,10 @@ class ListDAL {
 		} return false;
 	}
 
+	/**
+	 * Returns array with all lists
+	 * @return array Lists in directory
+	 */
 	public function getAllLists() {
 		$directory = self::$INCLUDE_PATH;
 		$listArray = scandir($directory);
@@ -83,11 +140,19 @@ class ListDAL {
 		return $listArray;
 	}
 	
+	/**
+	 * Returns path to directory containing lists
+	 * @return string Path to directory containing lists
+	 */
 	public function getFileDirectoryPath() {
 		return self::$INCLUDE_PATH;
 	}
 
-
+	/**
+	 * Converts array of list items to plain text
+	 * @param  array $contentArray Array of strings
+	 * @return string $text Content as plain text
+	 */
 	public function convertToPlainText($contentArray) {
 
 		$text = "";
@@ -100,9 +165,9 @@ class ListDAL {
 	}
 
 	/**
-	 * [cleanUpListName description]
-	 * @param  [type] $clientListName [description]
-	 * @return [type]                 [description]
+	 * Cleans up list name
+	 * @param  string $listName List name to clean up
+	 * @return string $cleanListName Clean list name
 	 */
 	public function cleanUpListName($listName) {
 		

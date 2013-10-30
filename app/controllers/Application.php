@@ -8,50 +8,79 @@ require_once("../app/views/ListView.php");
 require_once("../app/models/ListDAL.php");
 require_once("../app/controllers/ListController.php");
 require_once("../app/models/TaskList.php");
-
 require_once("../app/login/models/LoginModel.php");
 require_once("../app/login/views/LoginView.php");
 require_once("../app/login/controllers/LoginController.php");
 require_once("../app/login/views/LoginObserver.php");
 require_once("../app/login/models/TempAccount.php");
 
-
+/**
+ * Sets up and runs the application
+ * @author Alexander Hall
+ * @link http://www.alxhall.se
+ * @link https://github.com/alexicon79/taskmort/
+ * @license http://opensource.org/licenses/MIT MIT License
+ */
 class Application {
-
-	private $mainView;
-	private $clientRequestObserver;
-	private $listDAL;
+	
+	/**
+	 * @var app\controller\ListController $listController
+	 */
 	private $listController;
-	private $listView;
+
+	/**
+	 * @var app\model\ListDAL $listDAL
+	 */
+	private $listDAL;
+	
+	/**
+	 * @var app\model\TaskList $taskList
+	 */
 	private $taskList;
 
 	/**
-	 * @var app\login\model\LoginModel
+	 * @var app\view\MainView $mainView
+	 */
+	private $mainView;
+	
+	/**
+	 * @var app\view\ClientRequestObserver $clientRequestObserver
+	 */
+	private $clientRequestObserver;
+	
+	/**
+	 * @var app\view\ListView $listView
+	 */
+	private $listView;
+
+	/**
+	 * @var app\login\controller\LoginController $loginController
+	 */
+	private $loginController;
+	
+	/**
+	 * @var app\login\model\LoginModel $loginModel
 	 */
 	private $loginModel;
 
 	/**
-	 * @var app\login\view\LoginView
+	 * @var app\login\view\LoginView $loginView
 	 */
 	private $loginView;
 
 	/**
-	 * @var app\login\model\TempAccount
+	 * @var app\login\model\TempAccount $tempAccount
 	 */
 	private $tempAccount;
 
 	/**
-	 * @var app\login\view\LoginObserver
+	 * @var app\login\view\LoginObserver $loginObserver
 	 */
 	private $loginObserver;
 
 	/**
-	 * @var app\login\controller\LoginController
+	 * __construct Everything in it's right place...
 	 */
-	private $loginController;
-
-
-
 	public function __construct() {
 		$this->mainView = new \app\view\MainView();
 		$this->clientRequestObserver = new \app\view\ClientRequestObserver();
@@ -77,6 +106,10 @@ class Application {
 
 	}
 
+	/**
+	 * Invokes application
+	 * @return \shared\view\Page Object containing HTML (title + body)
+	 */
 	public function invoke() {
 
 		session_start();
@@ -91,10 +124,18 @@ class Application {
 		return $page;
  	}
 
+	/**
+	 * Get application CSS
+	 * @return string Path to stylesheet-file
+	 */
 	public function getAppStylesheet() {
 		return $this->mainView->getStyleSheet();
 	}
 
+	/**
+	 * Get application JavaScript
+	 * @return string Path to JavaScript-file
+	 */
 	public function getAppJavaScript() {
 		return $this->mainView->getJavaScript();
 	}

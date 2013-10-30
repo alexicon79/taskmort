@@ -2,6 +2,13 @@
 
 namespace app\login\model;
 
+/**
+ * Handles rules for login
+ * @author Alexander Hall 
+ * @link http://www.alxhall.se
+ * @link https://github.com/alexicon79/taskmort/
+ * @license http://opensource.org/licenses/MIT MIT License
+ */
 class LoginModel {
 
 	/**
@@ -34,7 +41,6 @@ class LoginModel {
 	 * Validates user input provided in login form
 	 * @throws Exception , if invalid input
 	 */
-
 	public function validateForm($clientUserName, $clientPassword) {
 
 		if (!empty($clientUserName) && empty($clientPassword)) {

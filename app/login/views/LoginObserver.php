@@ -2,6 +2,13 @@
 
 namespace app\login\view;
 
+/**
+ * Handles client interaction with login form
+ * @author Alexander Hall 
+ * @link http://www.alxhall.se
+ * @link https://github.com/alexicon79/taskmort/
+ * @license http://opensource.org/licenses/MIT MIT License
+ */
 class LoginObserver {
 
 	/**

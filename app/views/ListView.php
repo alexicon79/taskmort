@@ -4,13 +4,39 @@ namespace app\view;
 
 require_once("../app/views/ClientRequestObserver.php");
 
+/**
+ * Handles visual representation of lists
+ * @author Alexander Hall 
+ * @link http://www.alxhall.se
+ * @link https://github.com/alexicon79/taskmort/
+ * @license http://opensource.org/licenses/MIT MIT License
+ */
 class ListView extends ClientRequestObserver {
 
+	/**
+	 * @var string Regular expression pattern matching a task
+	 */
 	private static $REGEX_TASK = "/^(- ([^\@\n]+).+)/i";
+
+	/**
+	 * @var string Regular expression pattern matching a completed task
+	 */
     private static $REGEX_DONE = "/- (.+@done)/i";
+
+    /**
+	 * @var string Regular expression pattern matching a project
+     */
 	private static $REGEX_PROJECT = "/^(?!-)(.+:)$/i";
+
+	/**
+	 * @var string Regular expression pattern matching a note
+	 */
 	private static $REGEX_NOTE = "/^(?!\-).*(?<!\:)$/i";
 
+	/**
+	 * Displays input form for creating new list
+	 * @return string HTML
+	 */
 	public function getNewListPrompt() {
 		
 		$html = "
@@ -18,14 +44,20 @@ class ListView extends ClientRequestObserver {
 			<div id='newListPrompt'>
 				<form action='?" . parent::$LIST . "=" . parent::$CREATE . "' method='post' enctype='multipart/form-data'>
 					<input type='text' size='20' name='" . parent::$NEW_LIST_NAME . "' id='listName' placeholder='New List...' value='' />
-					<input type='submit' name='" . parent::$CREATE_LIST . "'  value='Create List' />
+					<input type='submit' name='" . parent::$CREATE_LIST . "' value='Create List' />
 				</form>
 			</div>
 		</div>";
 
 		return $html;
 	}
-
+	
+	/**
+	 * Displays all lists
+	 * @param  array $listArray Array containing list names
+	 * @param  string $directoryPath Path to directory of lists
+	 * @return string HTML
+	 */
 	public function getAllLists($listArray, $directoryPath){
 		
 		$html = "<div id='contentWrapper'><ul class='listBrowser'>";
@@ -43,8 +75,14 @@ class ListView extends ClientRequestObserver {
 
 		return $html;
 	}
-
-	public function getViewList($listName, $listItems){
+	
+	/**
+	 * Displays fancy list view
+	 * @param  string $listName Name of list to show
+	 * @param  app\model\TaskList $listItems All list items
+	 * @return string HTML
+	 */
+	public function getViewList($listName, \app\model\TaskList $listItems){
 		
 		$html = "
 		<div id='contentWrapper'>
@@ -81,7 +119,13 @@ class ListView extends ClientRequestObserver {
 					</div></div>";
 		return $html;
 	}
-
+	
+	/**
+	 * Displays editable list view
+	 * @param  string $listName Name of list to show in edit mode
+	 * @param  string $listContents Contents as plain text
+	 * @return string HTML
+	 */
 	public function getEditableList($listName, $listContents) {
 
 		if (empty($listContents)) {
@@ -105,19 +149,14 @@ class ListView extends ClientRequestObserver {
 
 		return $html;
 	}
-
+	
+	/**
+	 * Display default view
+	 * @return [type] [description]
+	 */
 	public function getDefaultPage() {
 		$html = "
 		<div id='taskmortLogo'>&nbsp;</div>";
 		return $html;
-	}
-
-	public function getNewContent() {
-		
-		$newLine = "\n";
-		$test .= $POST['item'];
-		dd($test);
-
-		return "emtpy";
-	}
+	}	
 }
