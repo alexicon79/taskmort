@@ -1,12 +1,13 @@
 Project:
-- task
+- test @done
+- taskszzz
 note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%;
-- task
 Test:
-- Hej
+- hepp
+- Hej @done
+This is to slow
 - Gå och lägg dig
 - new task @done
-- test
 Project:
 - test403203984
 this is anote

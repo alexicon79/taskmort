@@ -70,6 +70,11 @@ class ClientRequestObserver {
 	 * @var string $SAVE_TEXT Post variable
 	 */
 	protected static $SAVE_TEXT = "savePlainText";
+	
+	/**
+	 * @var string $SAVE_DROPBOX Post variable;
+	 */
+	protected static $SAVE_DROPBOX = "saveToDropbox";
 
 	/**
 	 * Checks if user wants to create new list
@@ -119,6 +124,16 @@ class ClientRequestObserver {
 	 */
 	public function wantsToSavePlainText() {
 		if (isset($_POST[self::$SAVE_TEXT])) {
+			return true;
+		} return false;
+	}
+
+	/**
+	 * Checks if user wants to save list to Dropbox
+	 * @return bool
+	 */
+	public function wantsToSaveToDropbox() {
+		if (isset($_POST[self::$SAVE_LIST]) && isset($_POST[self::$SAVE_DROPBOX])) {
 			return true;
 		} return false;
 	}

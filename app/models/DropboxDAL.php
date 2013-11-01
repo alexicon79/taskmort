@@ -34,7 +34,7 @@ class DropboxDAL extends ListDAL {
 	/**
 	 * @var string Path to Dropbox AppInfo file
 	 */
-	private static $DBX_APP_INFO = "../app-info.json";
+	private static $DBX_APP_INFO_PATH = "../app-info.json";
 	
 	/**
 	 * @var string App name
@@ -42,8 +42,8 @@ class DropboxDAL extends ListDAL {
 	private static $DBX_APP_NAME = "Taskmort";
 
 	public function __construct() {
-		$this->appInfo = \Dropbox\AppInfo::loadFromJsonFile(self::$DBX_APP_INFO);
-		$this->webAuth = new \Dropbox\WebAuthNoRedirect($appInfo, self::$DBX_APP_NAME);
+		$this->appInfo = \Dropbox\AppInfo::loadFromJsonFile(self::$DBX_APP_INFO_PATH);
+		$this->webAuth = new \Dropbox\WebAuthNoRedirect($this->appInfo, self::$DBX_APP_NAME);
 		$this->dbxClient = new \Dropbox\Client(self::$DBX_ACCESS_TOKEN, self::$DBX_APP_NAME);
 	}
 
@@ -52,13 +52,13 @@ class DropboxDAL extends ListDAL {
 	 * @param  string $listContent 	Content to save
 	 * @return null              
 	 */
-	public function saveToDropboxFile($listName, $listContent) {
+	public function saveListToDropbox($listName, $listContent) {
 		
-		$f = fopen("../data/hawohl.txt", "rb");
-		$result = $dbxClient->uploadFile("/hawohl.txt", \Dropbox\WriteMode::force(), $f);
+		$f = fopen(parent::$INCLUDE_PATH . $listName, "rb");
+		$result = $this->dbxClient->uploadFile("/" . $listName, \Dropbox\WriteMode::force(), $f);
 		fclose($f);
 
-		$folderMetadata = $dbxClient->getMetadataWithChildren("/");
+		// $folderMetadata = $dbxClient->getMetadataWithChildren("/");
 	}
 
 	/**

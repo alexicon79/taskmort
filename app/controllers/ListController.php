@@ -17,6 +17,11 @@ class ListController {
 	private $listDAL;
 
 	/**
+	 * @var app\model\DropboxDAL $dropboxDAL
+	 */
+	private $dropboxDAL;
+
+	/**
 	 * @var app\view\ListView $listView
 	 */
 	private $listView;
@@ -37,12 +42,14 @@ class ListController {
 	private $taskList;
 	
 	public function __construct(\app\model\ListDAL $listDAL,
+								\app\model\DropboxDAL $dropboxDAL,
 								\app\view\ListView $listView,
 								\app\view\ClientRequestObserver $clientRequest,
 								\app\view\MainView $mainView,
 								\app\model\TaskList $taskList){
 		
 		$this->listDAL = $listDAL;
+		$this->dropboxDAL = $dropboxDAL;
 		$this->listView = $listView;
 		$this->clientRequest = $clientRequest;
 		$this->mainView = $mainView;
@@ -124,6 +131,7 @@ class ListController {
 	/**
 	 * Saves list items as plain text
 	 * @param  string $listName Name of list to save
+	 * @param bool $saveToDropbox If user wants to save list to Dropbox
 	 * @return \shared\view\Page - HTML
 	 */
 	public function saveList($listName) {
@@ -131,12 +139,16 @@ class ListController {
 			if ($this->clientRequest->wantsToSavePlainText()) {
 				$content = $this->clientRequest->getSubmittedContent();
 				$this->listDAL->saveList($listName, $content);
+
 				return $this->viewList($listName);
 
 			} elseif ($this->clientRequest->wantsToSaveList()) {
 				$submittedContent = $this->clientRequest->getSubmittedContent();
 				$content = $this->listDAL->convertToPlainText($submittedContent);
 				$this->listDAL->saveList($listName, $content);
+				if ($this->clientRequest->wantsToSaveToDropbox()) {
+					$this->dropboxDAL->saveListToDropbox($listName, $content);
+				}
 				return $this->viewList($listName);
 			}
 			return $this->viewList($listName);

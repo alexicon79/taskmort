@@ -83,6 +83,8 @@ class ListView extends ClientRequestObserver {
 	 * @return string HTML
 	 */
 	public function getViewList($listName, \app\model\TaskList $listItems){
+
+		$dropboxSwitch = $this->getDropboxSwitch();
 		
 		$html = "
 		<div id='contentWrapper'>
@@ -93,7 +95,7 @@ class ListView extends ClientRequestObserver {
 			<a id='addItem' href='' title='ADD ITEM'>+</a>
 		</div>
 		<form action='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "' method='post' enctype='multipart/form-data'>
-		<input id='viewSaveButton' type='submit' name='" . parent::$SAVE_LIST . "' value='' />
+		<input id='viewSaveButton' type='submit' name='" . parent::$SAVE_LIST . "' value='' />" . $dropboxSwitch . "
 		<ul class='listView'>";
 		
 		foreach ($listItems->getAllItems() as $item) {
@@ -120,6 +122,18 @@ class ListView extends ClientRequestObserver {
 		return $html;
 	}
 	
+	public function getDropboxSwitch(){
+		$html = "<div class='onoffswitch'>
+    <input type='checkbox' name='" . parent::$SAVE_DROPBOX . "' class='onoffswitch-checkbox' id='myonoffswitch' >
+    <label class='onoffswitch-label' for='myonoffswitch'>
+        <div class='onoffswitch-inner'></div>
+        <div class='onoffswitch-switch'></div>
+    </label>
+</div>";
+
+		return $html;
+	}
+
 	/**
 	 * Displays editable list view
 	 * @param  string $listName Name of list to show in edit mode

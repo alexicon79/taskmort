@@ -6,7 +6,7 @@ $(document).ready(function () {
 	var viewButton = $("#view");
 	var completedTasks = $(".task_completed");
 	var deleteList = $(".deleteList");
-	var itemInputFields = $(":input:not(textarea, #listName, .loginForm, .loginCheckbox, .loginSubmit, #saveAndView)");
+	var itemInputFields = $(":input:not(textarea, #listName, .loginForm, .loginCheckbox, .loginSubmit, #saveAndView, #saveToDropbox)");
 	var addItem = $("#addItem");
 	var removeItem = $(".removeItem");
 	var removeNote = $(".removeItem_note");

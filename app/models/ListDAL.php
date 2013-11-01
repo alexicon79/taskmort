@@ -29,7 +29,7 @@ class ListDAL {
 	/**
 	 * @var string Path to directory containing lists
 	 */
-	private static $INCLUDE_PATH = "../data/";
+	protected static $INCLUDE_PATH = "../data/";
 
 	/**
 	 * Gets file content as plain text

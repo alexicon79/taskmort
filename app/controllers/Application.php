@@ -6,6 +6,7 @@ require_once("../app/views/MainView.php");
 require_once("../app/views/ClientRequestObserver.php");
 require_once("../app/views/ListView.php");
 require_once("../app/models/ListDAL.php");
+require_once("../app/models/DropboxDAL.php");
 require_once("../app/controllers/ListController.php");
 require_once("../app/models/TaskList.php");
 require_once("../app/login/models/LoginModel.php");
@@ -13,6 +14,7 @@ require_once("../app/login/views/LoginView.php");
 require_once("../app/login/controllers/LoginController.php");
 require_once("../app/login/views/LoginObserver.php");
 require_once("../app/login/models/TempAccount.php");
+
 
 /**
  * Sets up and runs the application
@@ -32,7 +34,12 @@ class Application {
 	 * @var app\model\ListDAL $listDAL
 	 */
 	private $listDAL;
-	
+
+	/**
+	 * @var app\model\DropboxDAL $dropboxDAL
+	 */
+	private $dropboxDAL;
+
 	/**
 	 * @var app\model\TaskList $taskList
 	 */
@@ -85,10 +92,12 @@ class Application {
 		$this->mainView = new \app\view\MainView();
 		$this->clientRequestObserver = new \app\view\ClientRequestObserver();
 		$this->listDAL = new \app\model\ListDAL();
+		$this->dropboxDAL = new \app\model\DropboxDAL();
 		$this->listView = new \app\view\ListView();
 		$this->taskList = new \app\model\TaskList();
 
 		$this->listController = new \app\controller\ListController( $this->listDAL, 
+																	$this->dropboxDAL,
 																 	$this->listView, 
 																 	$this->clientRequestObserver,
 																 	$this->mainView,
