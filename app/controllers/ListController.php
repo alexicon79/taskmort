@@ -12,9 +12,9 @@ namespace app\controller;
 class ListController {
 
 	/**
-	 * @var app\model\ListDAL $listDAL
+	 * @var app\model\ListFile $listFile
 	 */
-	private $listDAL;
+	private $listFile;
 
 	/**
 	 * @var app\model\DropboxDAL $dropboxDAL
@@ -41,14 +41,14 @@ class ListController {
 	 */
 	private $taskList;
 	
-	public function __construct(\app\model\ListDAL $listDAL,
+	public function __construct(\app\model\ListFile $listFile,
 								\app\model\DropboxDAL $dropboxDAL,
 								\app\view\ListView $listView,
 								\app\view\ClientRequestObserver $clientRequest,
 								\app\view\MainView $mainView,
 								\app\model\TaskList $taskList){
 		
-		$this->listDAL = $listDAL;
+		$this->listDAL = $listFile;
 		$this->dropboxDAL = $dropboxDAL;
 		$this->listView = $listView;
 		$this->clientRequest = $clientRequest;

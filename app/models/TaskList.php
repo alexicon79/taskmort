@@ -12,9 +12,9 @@ namespace app\model;
 class TaskList {
 	
 	/**
-	 * @var app\model\ListDAL $listDAL
+	 * @var app\model\ListFile $listFile
 	 */
-	private $listDAL;
+	private $listFile;
 
 	/**
 	 * @var array $allItems
@@ -62,7 +62,7 @@ class TaskList {
 	private static $REGEX_NOTE = "/^(?!\-).*(?<!\:)$/i";
 
 	public function __construct(){
-		$this->listDAL = new \app\model\ListDAL();
+		$this->listDAL = new \app\model\ListFile();
 	}
 
 	/**

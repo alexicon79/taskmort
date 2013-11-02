@@ -9,7 +9,7 @@ namespace app\model;
  * @link https://github.com/alexicon79/taskmort/
  * @license http://opensource.org/licenses/MIT MIT License
  */
-class DropboxDAL extends ListDAL {
+class DropboxDAL extends ListFile {
 
 	/**
 	 * @var \Dropbox\AppInfo $appInfo

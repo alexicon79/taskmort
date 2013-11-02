@@ -9,7 +9,7 @@ namespace app\model;
  * @link https://github.com/alexicon79/taskmort/
  * @license http://opensource.org/licenses/MIT MIT License
  */
-class ListDAL {
+class ListFile {
 	
 	/**
 	 * @var string Name of newly created file

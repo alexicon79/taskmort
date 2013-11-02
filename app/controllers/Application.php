@@ -5,7 +5,7 @@ namespace app\controller;
 require_once("../app/views/MainView.php");
 require_once("../app/views/ClientRequestObserver.php");
 require_once("../app/views/ListView.php");
-require_once("../app/models/ListDAL.php");
+require_once("../app/models/ListFile.php");
 require_once("../app/models/DropboxDAL.php");
 require_once("../app/controllers/ListController.php");
 require_once("../app/models/TaskList.php");
@@ -31,9 +31,9 @@ class Application {
 	private $listController;
 
 	/**
-	 * @var app\model\ListDAL $listDAL
+	 * @var app\model\ListFile $listFile
 	 */
-	private $listDAL;
+	private $listFile;
 
 	/**
 	 * @var app\model\DropboxDAL $dropboxDAL
@@ -91,7 +91,7 @@ class Application {
 	public function __construct() {
 		$this->mainView = new \app\view\MainView();
 		$this->clientRequestObserver = new \app\view\ClientRequestObserver();
-		$this->listDAL = new \app\model\ListDAL();
+		$this->listDAL = new \app\model\ListFile();
 		$this->dropboxDAL = new \app\model\DropboxDAL();
 		$this->listView = new \app\view\ListView();
 		$this->taskList = new \app\model\TaskList();
