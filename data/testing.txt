@@ -1,7 +1,3 @@
-Yes:
-- Dropbox test
-Default:
-- What is new @done
-- nya saker
-- is this to slow? 
-- Dropbox test 489
+Prjoces:
+- task
+- hej

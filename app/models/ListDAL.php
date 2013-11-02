@@ -155,6 +155,10 @@ class ListDAL {
 	 */
 	public function convertToPlainText($contentArray) {
 
+		// if(count($contentArray)<1) {
+		// 	$contentArray[] = "";
+		// };
+
 		$text = "";
 
 		foreach ($contentArray as $string) {

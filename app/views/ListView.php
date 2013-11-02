@@ -103,16 +103,16 @@ class ListView extends ClientRequestObserver {
 
 			if (preg_match(self::$REGEX_NOTE, $item)) {
 				$html .= "<li class='item note'><span class='visible'>" . $item . "</span>";
-				$html .= "<input type='text' class='hidden editableNote' name='item[]' value='$item'><span class='removeItem_note'>&#10005;</span></li>";
+				$html .= "<input type='text' class='hidden editableNote' name='" . parent::$LIST_ITEM . "[]' value='$item'><span class='removeItem_note'>&#10005;</span></li>";
 			}
 
 			if (preg_match(self::$REGEX_PROJECT, $item)) {
 				$html .= "<li class='item project'><span class='visible'>" . $item . "</span>";
-				$html .= "<input type='text' class='hidden editableProject' name='item[]' value='$item'></li>";
+				$html .= "<input type='text' class='hidden editableProject' name='" . parent::$LIST_ITEM . "[]' value='$item'><span class='removeItem_project'>&#10005;</span></li>";
 			}
 			if (preg_match(self::$REGEX_TASK, $item)) {
 				$html .= "<li class='item task'><span class='visible'>" . $item . "</span>";
-				$html .= "<input type='text' class='hidden editableTask' name='item[]' value='$item'><span class='removeItem'>&#10005;</span></li>";
+				$html .= "<input type='text' class='hidden editableTask' name='" . parent::$LIST_ITEM . "[]' value='$item'><span class='removeItem'>&#10005;</span></li>";
 			}
 
 		}
@@ -155,7 +155,7 @@ class ListView extends ClientRequestObserver {
 			</div>
 			<form action='?" . parent::$LIST . "=" . parent::$VIEW . "&name=" . $listName . "' method='post' enctype='multipart/form-data'>
 				<input type='submit' id='saveAndView' name='" . parent::$SAVE_TEXT . "' value='' />
-				<textarea id='editableList' name='plainText' 
+				<textarea id='editableList' name='". parent::$PLAIN_TEXT ."' 
 				placeholder='Add some tasks...'>" . $listContents . "</textarea>
 			</form>
 			</div>

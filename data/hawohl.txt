@@ -1,15 +1,17 @@
 Project:
 - test @done
-- taskszzz
 note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%; note width: 92.8%;
 Test:
+- tasks
 - hepp
+- new task
 - Hej @done
 This is to slow
-- Gå och lägg dig
+- Gå och lägg dig @done
 - new task @done
 Project:
 - test403203984
+- hello
 this is anote
 Har inte fått tag på Arne och den andra
 - test5

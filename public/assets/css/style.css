@@ -247,7 +247,7 @@ li.item.task:after, li.item.task_completed:after {
 	color: #bbb;
 }
 
-li.item.task:nth-of-type(1){
+li.item.task:nth-of-type(1),  li.item.task_completed:nth-of-type(1){
 	border-top: 1px solid #eee;
 }
 
@@ -266,13 +266,18 @@ span.visible {
 	overflow-wrap: break-word;
 }
 
-span.removeItem, span.removeItem_note {
+span.removeItem, span.removeItem_note, span.removeItem_project {
 	float: right;
 	margin-top: 3px;
 	font-size: 18px;
 	margin-left: 20px;
 	color: #f1d4d9;
 	cursor: pointer;
+}
+
+span.removeItem_project {
+	margin-right: 1px;
+	color: #bbb;
 }
 
 span.removeItem_note {

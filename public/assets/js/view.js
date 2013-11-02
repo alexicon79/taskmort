@@ -10,6 +10,7 @@ $(document).ready(function () {
 	var addItem = $("#addItem");
 	var removeItem = $(".removeItem");
 	var removeNote = $(".removeItem_note");
+	var removeProject = $(".removeItem_project");
 	var checkBox;
 	var REGEX_Done = /@done/;
 
@@ -76,6 +77,13 @@ $(document).ready(function () {
 	});
 
 	removeNote.click(function(e){
+		var submit = $(":submit");
+		var item = $(e.target)[0].parentNode;
+		item.remove();
+		submit.click();
+	});
+
+	removeProject.click(function(e){
 		var submit = $(":submit");
 		var item = $(e.target)[0].parentNode;
 		item.remove();

@@ -139,16 +139,17 @@ class ListController {
 			if ($this->clientRequest->wantsToSavePlainText()) {
 				$content = $this->clientRequest->getSubmittedContent();
 				$this->listDAL->saveList($listName, $content);
-
 				return $this->viewList($listName);
 
 			} elseif ($this->clientRequest->wantsToSaveList()) {
 				$submittedContent = $this->clientRequest->getSubmittedContent();
 				$content = $this->listDAL->convertToPlainText($submittedContent);
 				$this->listDAL->saveList($listName, $content);
+
 				if ($this->clientRequest->wantsToSaveToDropbox()) {
 					$this->dropboxDAL->saveListToDropbox($listName, $content);
 				}
+				
 				return $this->viewList($listName);
 			}
 			return $this->viewList($listName);

@@ -77,6 +77,16 @@ class ClientRequestObserver {
 	protected static $SAVE_DROPBOX = "saveToDropbox";
 
 	/**
+	 * @var string $SAVE_DROPBOX Post variable;
+	 */
+	protected static $LIST_ITEM = "item";
+
+	/**
+	 * @var string $SAVE_DROPBOX Post variable;
+	 */
+	protected static $PLAIN_TEXT = "plainText";
+
+	/**
 	 * Checks if user wants to create new list
 	 * @return bool
 	 */
@@ -193,17 +203,23 @@ class ClientRequestObserver {
 	}
 
 	/**
-	 * Gets submitted list content
+	 * Gets submitted list content, adds default items if empty
 	 * @return array Content in $_POST as array of strings
 	 * @return string Content in $_POST as string
 	 */
 	public function getSubmittedContent(){
 		if($this->wantsToSaveList()) {
 			$newLine = "\n";
-			$contentArray = $_POST['item'];
+			
+			if (isset($_POST[self::$LIST_ITEM])) {
+				$contentArray = $_POST[self::$LIST_ITEM];
+			} else {
+				$contentArray[] = "Default:";
+				$contentArray[] = "- Add some tasks...";
+			}
 			return $contentArray;
 		} elseif ($this->wantsToSavePlainText()) {
-			$content = $_POST['plainText'];
+			$content = $_POST[self::$PLAIN_TEXT];
 			return $content;
 		}
 	}

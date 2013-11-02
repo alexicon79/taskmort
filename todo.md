@@ -1,9 +1,8 @@
 TODO:
 
-- add dropbox save feature
-- add delete button to projects
-- add exception handling
-
+- add dropbox save feature @done
+- add delete button to projects @done
+- add exception handling @semi-done
 
 - save content to file @done
 - adjust VIEW-version / implement markup rules @done
@@ -14,19 +13,5 @@ TODO:
 - load content from file @done
 
 
-
-tests
-
-
-Login
-
-
-Create new list
-
-
-Save list
-
-
-Markup
-
+TEST REPORT
 
