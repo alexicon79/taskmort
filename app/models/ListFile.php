@@ -24,7 +24,7 @@ class ListFile {
 	/**
 	 * @var string Valid file extension
 	 */
-	private static $FILE_TYPE = ".txt";
+	private static $FILE_EXTENSION = ".txt";
 
 	/**
 	 * @var string Path to directory containing lists
@@ -57,14 +57,18 @@ class ListFile {
 	public function createListFile($listName) {
 		$cleanListName = self::cleanUpListName($listName);
 
-		$this->newFileName = $cleanListName . self::$FILE_TYPE;
+		if(empty($cleanListName)){
+			$cleanListName= "untitled";
+		}
+
+		$this->newFileName = $cleanListName . self::$FILE_EXTENSION;
 
 		$appendIndex = 0;
 
 		// if filename exists append number to filename
 		while ($this->checkIfFileExists($this->newFileName)) {
 			$appendIndex++;
-			$this->newFileName = $cleanListName . "-" . $appendIndex . self::$FILE_TYPE;
+			$this->newFileName = $cleanListName . "-" . $appendIndex . self::$FILE_EXTENSION;
 		}
 		
 		$newFileHandle = fopen(self::$INCLUDE_PATH . $this->newFileName, 'w') or die("can't create file");

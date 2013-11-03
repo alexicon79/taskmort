@@ -1,3 +1,0 @@
-Default:
-- Add some tasks...
-- heppla

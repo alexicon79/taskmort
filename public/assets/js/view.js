@@ -59,9 +59,16 @@ $(document).ready(function () {
 		e.preventDefault();
 		var ulList = $("ul.listView");
 
-		$("<li class='newItem'><input type='text' class='editableTask' name='item[]' placeholder='Add new item...' value=''><span id='syntax'>[Syntax?]</span></li>").prependTo(ulList);
-		
+		$("<li class='newItem'><div id='addItemWrapper'><input type='text' class='editableTask' name='item[]' placeholder='Add new item...' value=''><a id='addItemButton' href='#'>OK</a></div><span id='syntax'>[Syntax?]</span></li>").prependTo(ulList);
 		$(".editableTask")[0].focus();
+
+		var addItemButton = $("#addItemButton");
+
+		addItemButton.click(function(e){
+			e.preventDefault();
+			var submit = $(":submit");
+			submit.click();
+		});
 
 		var syntaxButton = $("#syntax");
 		syntaxButton.click(function(e){

@@ -1,0 +1,10 @@
+@done
+New Project:
+- task @done
+En liten anteckning
+- yes @done
+- task @done
+bajs
+- något att göra
+Default:
+- Add some tasks...

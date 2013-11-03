@@ -42,8 +42,10 @@ class ListView extends ClientRequestObserver {
 		$html = "
 		<div id='contentWrapper'>
 			<div id='newListPrompt'>
-				<form action='?" . parent::$LIST . "=" . parent::$CREATE . "' method='post' enctype='multipart/form-data'>
-					<input type='text' size='20' name='" . parent::$NEW_LIST_NAME . "' id='listName' placeholder='New List...' value='' />
+				<form action='?" . parent::$LIST . "=" . parent::$CREATE 
+					. "' method='post' enctype='multipart/form-data'>
+					<input type='text' size='20' name='" . parent::$NEW_LIST_NAME 
+						. "' id='listName' placeholder='New List...' value='' />
 					<input type='submit' name='" . parent::$CREATE_LIST . "' value='Create List' />
 				</form>
 			</div>
@@ -66,8 +68,10 @@ class ListView extends ClientRequestObserver {
 			if ($listName == "." || $listName == ".."){
 				$html .= "";
 			} else {
-				$html .= "<li><a href='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "' class='browseFile'>". $listName . "</a>";
-				$html .= "<a href='?" . parent::$LIST . "=" . parent::$DELETE . "&name=" . $listName ."' class='deleteList'>&times;</a></li>";
+				$html .= "<li><a href='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" 
+							. $listName . "' class='browseFile'>". $listName . "</a>";
+				$html .= "<a href='?" . parent::$LIST . "=" . parent::$DELETE . "&name=" 
+							. $listName ."' class='deleteList'>&times;</a></li>";
 			}
 		}
 		
@@ -91,11 +95,14 @@ class ListView extends ClientRequestObserver {
 		<div class='listName'>$listName</div>
 		<div class='viewListWrapper'>
 		<div class='listMenu'>
-			<a id='edit' href='?" . parent::$LIST ."=" . parent::$EDIT . "&name=" . $listName . "' title='EDIT PLAIN TEXT'></a>
+			<a id='edit' href='?" . parent::$LIST ."=" . parent::$EDIT . "&name=" 
+				. $listName . "' title='EDIT PLAIN TEXT'></a>
 			<a id='addItem' href='' title='ADD ITEM'>+</a>
 		</div>
-		<form action='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "' method='post' enctype='multipart/form-data'>
-		<input id='viewSaveButton' type='submit' name='" . parent::$SAVE_LIST . "' value='' />" . $dropboxSwitch . "
+		<form action='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName 
+				. "' method='post' enctype='multipart/form-data'>
+		<input id='viewSaveButton' type='submit' name='" . parent::$SAVE_LIST 
+				. "' value='' />" . $dropboxSwitch . "
 		<ul class='listView'>";
 		
 		foreach ($listItems->getAllItems() as $item) {
@@ -103,16 +110,19 @@ class ListView extends ClientRequestObserver {
 
 			if (preg_match(self::$REGEX_NOTE, $item)) {
 				$html .= "<li class='item note'><span class='visible'>" . $item . "</span>";
-				$html .= "<input type='text' class='hidden editableNote' name='" . parent::$LIST_ITEM . "[]' value='$item'><span class='removeItem_note'>&#10005;</span></li>";
+				$html .= "<input type='text' class='hidden editableNote' name='" . parent::$LIST_ITEM 
+							. "[]' value='$item'><span class='removeItem_note'>&#10005;</span></li>";
 			}
 
 			if (preg_match(self::$REGEX_PROJECT, $item)) {
 				$html .= "<li class='item project'><span class='visible'>" . $item . "</span>";
-				$html .= "<input type='text' class='hidden editableProject' name='" . parent::$LIST_ITEM . "[]' value='$item'><span class='removeItem_project'>&#10005;</span></li>";
+				$html .= "<input type='text' class='hidden editableProject' name='" . parent::$LIST_ITEM 
+							. "[]' value='$item'><span class='removeItem_project'>&#10005;</span></li>";
 			}
 			if (preg_match(self::$REGEX_TASK, $item)) {
 				$html .= "<li class='item task'><span class='visible'>" . $item . "</span>";
-				$html .= "<input type='text' class='hidden editableTask' name='" . parent::$LIST_ITEM . "[]' value='$item'><span class='removeItem'>&#10005;</span></li>";
+				$html .= "<input type='text' class='hidden editableTask' name='" . parent::$LIST_ITEM 
+							. "[]' value='$item'><span class='removeItem'>&#10005;</span></li>";
 			}
 
 		}
@@ -151,9 +161,11 @@ class ListView extends ClientRequestObserver {
 		<div class='listName'>$listName</div>
 		<div class='editListWrapper'>
 			<div class='listMenu'>
-				<a id='view' href='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" . $listName . "' title='VIEW'></a>
+				<a id='view' href='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" 
+					. $listName . "' title='VIEW'></a>
 			</div>
-			<form action='?" . parent::$LIST . "=" . parent::$VIEW . "&name=" . $listName . "' method='post' enctype='multipart/form-data'>
+			<form action='?" . parent::$LIST . "=" . parent::$VIEW . "&name=" . $listName 
+				. "' method='post' enctype='multipart/form-data'>
 				<input type='submit' id='saveAndView' name='" . parent::$SAVE_TEXT . "' value='' />
 				<textarea id='editableList' name='". parent::$PLAIN_TEXT ."' 
 				placeholder='Add some tasks...'>" . $listContents . "</textarea>
