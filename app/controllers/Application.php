@@ -91,12 +91,12 @@ class Application {
 	public function __construct() {
 		$this->mainView = new \app\view\MainView();
 		$this->clientRequestObserver = new \app\view\ClientRequestObserver();
-		$this->listDAL = new \app\model\ListFile();
+		$this->listFile = new \app\model\ListFile();
 		$this->dropboxDAL = new \app\model\DropboxDAL();
 		$this->listView = new \app\view\ListView();
 		$this->taskList = new \app\model\TaskList();
 
-		$this->listController = new \app\controller\ListController( $this->listDAL, 
+		$this->listController = new \app\controller\ListController( $this->listFile, 
 																	$this->dropboxDAL,
 																 	$this->listView, 
 																 	$this->clientRequestObserver,

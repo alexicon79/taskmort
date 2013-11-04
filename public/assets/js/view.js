@@ -72,7 +72,7 @@ $(document).ready(function () {
 
 		var syntaxButton = $("#syntax");
 		syntaxButton.click(function(e){
-			e.target.innerHTML = "Begin with a single dash [-] to create a task. End with a semi-colon [:] to create a project. Tag with @done if task is completed. Everything else is a note. Off you go!";
+			e.target.innerHTML = "Begin with a single dash [-] to create a task. End with a colon [:] to create a project. Tag with @done if task is completed. Everything else is a note. Off you go!";
 		});
 	});
 

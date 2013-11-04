@@ -48,7 +48,7 @@ class ListController {
 								\app\view\MainView $mainView,
 								\app\model\TaskList $taskList){
 		
-		$this->listDAL = $listFile;
+		$this->listFile = $listFile;
 		$this->dropboxDAL = $dropboxDAL;
 		$this->listView = $listView;
 		$this->clientRequest = $clientRequest;
@@ -109,9 +109,9 @@ class ListController {
 	 */
 	public function createList() {
 		try {
-			$newFileHandle = $this->listDAL->createListFile($this->clientRequest->getSubmittedListName());
-			$newListName = $this->listDAL->getNewListName();
-			$this->listDAL->writeToFile($newFileHandle, "");
+			$newFileHandle = $this->listFile->createListFile($this->clientRequest->getSubmittedListName());
+			$newListName = $this->listFile->getNewListName();
+			$this->listFile->writeToFile($newFileHandle, "");
 			return $this->viewList($newListName);
 		} catch (\Exception $e) {
 			return $this->mainView->getDefaultPage();
@@ -123,8 +123,8 @@ class ListController {
 	 * @return \shared\view\Page - HTML
 	 */
 	public function showLists() {
-		$listArray = $this->listDAL->getAllLists();
-		$directoryPath = $this->listDAL->getFileDirectoryPath();
+		$listArray = $this->listFile->getAllLists();
+		$directoryPath = $this->listFile->getFileDirectoryPath();
 		return $this->mainView->getAllListsPage($listArray, $directoryPath);
 	}
 	
@@ -138,13 +138,13 @@ class ListController {
 		try {
 			if ($this->clientRequest->wantsToSavePlainText()) {
 				$content = $this->clientRequest->getSubmittedContent();
-				$this->listDAL->saveList($listName, $content);
+				$this->listFile->saveList($listName, $content);
 				return $this->viewList($listName);
 
 			} elseif ($this->clientRequest->wantsToSaveList()) {
 				$submittedContent = $this->clientRequest->getSubmittedContent();
-				$content = $this->listDAL->convertToPlainText($submittedContent);
-				$this->listDAL->saveList($listName, $content);
+				$content = $this->listFile->convertToPlainText($submittedContent);
+				$this->listFile->saveList($listName, $content);
 
 				if ($this->clientRequest->wantsToSaveToDropbox()) {
 					$this->dropboxDAL->saveListToDropbox($listName, $content);
@@ -165,7 +165,7 @@ class ListController {
 	 */
 	public function deleteList($listName) {
 		try {
-			$this->listDAL->deleteList($listName);
+			$this->listFile->deleteList($listName);
 			return $this->showLists();
 		} catch (\Exception $e) {
 			return $this->mainView->getDefaultPage();
@@ -179,7 +179,7 @@ class ListController {
 	 */
 	public function editList($listName) {
 		try {
-			$listContent = $this->listDAL->getFileContent($listName);
+			$listContent = $this->listFile->getFileContent($listName);
 			return $this->mainView->getEditListPage($listName, $listContent);
 		} catch (\Exception $e) {
 			return $this->mainView->getDefaultPage();
