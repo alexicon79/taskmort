@@ -76,6 +76,12 @@ $(document).ready(function () {
 		});
 	});
 
+	editButton.click(function(e){
+		alert("hej");
+		var submit = $(":submit");
+		submit.click();
+	});
+
 	removeItem.click(function(e){
 		var submit = $(":submit");
 		var item = $(e.target)[0].parentNode;
@@ -123,11 +129,6 @@ $(document).ready(function () {
 		var cleanString = originalString.replace(/@done/ig, "");
 
 		itemInput.value = cleanString;
-		submit.click();
-	});
-
-	editButton.click(function(e){
-		var submit = $(":submit");
 		submit.click();
 	});
 
