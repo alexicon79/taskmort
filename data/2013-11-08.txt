@@ -1,0 +1,6 @@
+Aktuellt:
+- ringa vestkross @done
+- testing @test
+- new item @test @done
+- Fixa alxhall momsdeklaration @done
+- Fixa klart + printa ut malmö-redovisning @kai @done

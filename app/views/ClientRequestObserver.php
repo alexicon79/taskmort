@@ -32,6 +32,11 @@ class ClientRequestObserver {
 	protected static $VIEW = "view";
 
 	/**
+	 * @var string $NAME Get variable
+	 */
+	protected static $NAME = "name";
+	
+	/**
 	 * @var string $DELETE Get variable
 	 */
 	protected static $DELETE = "delete";

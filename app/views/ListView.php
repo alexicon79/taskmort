@@ -2,7 +2,10 @@
 
 namespace app\view;
 
+use app\view\helper\ListHelper as helper;
+
 require_once("../app/views/ClientRequestObserver.php");
+require_once("../app/views/helpers/list_helpers.php");
 
 /**
  * Handles visual representation of lists
@@ -18,6 +21,11 @@ class ListView extends ClientRequestObserver {
 	 */
 	private static $REGEX_TASK = "/^(- ([^\@\n]+).+)/i";
 
+		/**
+	 * @var string Regular expression pattern matching a task
+	 */
+	private static $REGEX_TASK_V2 = "/^(-([^\@\n]+).+)/i";
+
 	/**
 	 * @var string Regular expression pattern matching a completed task
 	 */
@@ -32,6 +40,12 @@ class ListView extends ClientRequestObserver {
 	 * @var string Regular expression pattern matching a note
 	 */
 	private static $REGEX_NOTE = "/^(?!\-).*(?<!\:)$/i";
+
+	/**
+	 * @var string Regular expression pattern matching a note
+	 */
+	private static $REGEX_TAG = "/@.[^ ]*/i";
+
 
 	/**
 	 * Displays input form for creating new list
@@ -68,14 +82,15 @@ class ListView extends ClientRequestObserver {
 			if ($listName == "." || $listName == ".."){
 				$html .= "";
 			} else {
-				$html .= "<li><a href='?" . parent::$LIST ."=" . parent::$VIEW . "&name=" 
-							. $listName . "' class='browseFile'>". $listName . "</a>";
-				$html .= "<a href='?" . parent::$LIST . "=" . parent::$DELETE . "&name=" 
-							. $listName ."' class='deleteList'>&times;</a></li>";
+				$html .="<li>";
+					$html .= helper::listUrl(parent::$VIEW, $listName, $listName, "browseFile");
+					$html .= helper::listUrl(parent::$DELETE, $listName, "&times;", "deleteList");
+				$html .= "</li>";
 			}
 		}
 		
 		$html .= "</ul></div>";
+
 
 		return $html;
 	}
@@ -119,8 +134,13 @@ class ListView extends ClientRequestObserver {
 				$html .= "<input type='text' class='hidden editableProject' name='" . parent::$LIST_ITEM 
 							. "[]' value='$item'><span class='removeItem_project'>&#10005;</span></li>";
 			}
-			if (preg_match(self::$REGEX_TASK, $item)) {
-				$html .= "<li class='item task'><span class='visible'>" . $item . "</span>";
+			if (preg_match(self::$REGEX_TASK, $item) || preg_match(self::$REGEX_TASK_V2, $item)) {				
+				if (preg_match(self::$REGEX_TAG, $item)) {
+					$taggedItem = preg_replace(self::$REGEX_TAG, "<span class='tag'>$0</span>", $item);
+					$html .= "<li class='item task'><span class='visible'>" . $taggedItem . "</span>";
+				} else {
+					$html .= "<li class='item task'><span class='visible'>" . $item . "</span>";
+				}
 				$html .= "<input type='text' class='hidden editableTask' name='" . parent::$LIST_ITEM 
 							. "[]' value='$item'><span class='removeItem'>&#10005;</span></li>";
 			}

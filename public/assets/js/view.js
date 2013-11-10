@@ -20,7 +20,9 @@ $(document).ready(function () {
 	var checkBox_completed = $(".checkBox_completed");
 
 	visibleItems.click(function(e){
+		//todo: fix e.target so it inlcudes entire string. thats probably why multiple tags doesn't work
 		var item = $(e.target);
+		console.log(item);
 		var itemInputField = $(e.target).next()[0];
 
 		itemInputField.className = "visible editableTask";
@@ -34,16 +36,17 @@ $(document).ready(function () {
 		var item = itemInput[0].previousSibling;
 		var originalInputString = itemInput.val();
 		var cleanString = originalInputString.replace(/<[^>]+>[^<]*<[^>]+>|<[^\/]+\/>/ig, "");
+		var taggedString = cleanString.replace(/@.[^ ]*/ig, "<span class='tag'>$&</span>");
 
 		itemInput[0].className = "hidden";
 
 		if ($(item).hasClass("task_completed")) {
 			item.className = "visible task_completed";
 		} else {
-			item.className = "visible";			
+			item.className = "visible";
 		}
 
-		item.innerHTML = cleanString;
+		item.innerHTML = taggedString;
 
 		generateMarkupFromClassName(item);
 
@@ -77,30 +80,25 @@ $(document).ready(function () {
 	});
 
 	editButton.click(function(e){
-		alert("hej");
-		var submit = $(":submit");
-		submit.click();
+		submitForm();
 	});
 
 	removeItem.click(function(e){
-		var submit = $(":submit");
 		var item = $(e.target)[0].parentNode;
 		item.remove();
-		submit.click();
+		submitForm();
 	});
 
 	removeNote.click(function(e){
-		var submit = $(":submit");
 		var item = $(e.target)[0].parentNode;
 		item.remove();
-		submit.click();
+		submitForm();
 	});
 
 	removeProject.click(function(e){
-		var submit = $(":submit");
 		var item = $(e.target)[0].parentNode;
 		item.remove();
-		submit.click();
+		submitForm();
 	});
 
 	deleteList.click(function(e){
@@ -112,15 +110,14 @@ $(document).ready(function () {
 	});
 
 	checkBox.click(function(e){
-		var submit = $(":submit");
 		var item = $(e.target)[0].parentNode;
 		var itemInput = $(item)[0].firstChild.nextSibling;
 		itemInput.value = itemInput.value + " @done";
-		submit.click();
+		submitForm();
 	});
 
 	checkBox_completed.click(function(e){
-		var submit = $(":submit");
+
 		var item = $(e.target)[0].parentNode;
 		var itemInput = $(item)[0].firstChild.nextSibling;
 		
@@ -129,16 +126,25 @@ $(document).ready(function () {
 		var cleanString = originalString.replace(/@done/ig, "");
 
 		itemInput.value = cleanString;
-		submit.click();
+
+		submitForm();
 	});
 
 	$(function() {
 		$( "ul.listView" ).sortable({
+			stop: function( event, ui ) {
+				submitForm();
+			},
 			revert: true
 		});
 
 		$( "span, ul, li" ).disableSelection();
 	});
+
+	function submitForm() {
+		var submit = $(":submit");
+		submit.click();
+	};
 
 	function generateMarkupFromClassName(content) {
 		for (var i = 0; i < content.length; i++) {
